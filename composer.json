@@ -1,0 +1,9 @@
+{
+    "autoload": {
+        "name": "Atsiskaitymas",
+        "description": "Atsiskaitymas",
+        "psr-4": {
+            "PraktineApp\\": "app"
+        }
+    }
+}
