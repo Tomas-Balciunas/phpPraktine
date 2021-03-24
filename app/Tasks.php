@@ -4,6 +4,14 @@ namespace PraktineApp;
 use PDO;
 class Tasks {
     protected $pdo;
+    private $pavadinimas;
+    private $kodas;
+    private $pvmkodas;
+    private $adresas;
+    private $tel;
+    private $elpastas;
+    private $veikla;
+    private $vadovas;
 
     public function __construct($pdo) {
         $this->pdo = $pdo;
@@ -59,6 +67,37 @@ class Tasks {
         $statement->bindValue(":id", $id, PDO::PARAM_INT);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch(PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function sukurti($task) {
+        $this->pavadinimas = $task['pavadinimas'];
+        $this->kodas = $task['kodas'];
+        $this->pvmkodas = $task['pvmkodas'];
+        $this->adresas = $task['adresas'];
+        $this->tel = $task['tel'];
+        $this->elpastas = $task['elpastas'];
+        $this->veikla = $task['veikla'];
+        $this->vadovas = $task['vadovas'];
+        $this->prideti();
+    }
+
+    public function prideti() {
+        try {
+            $query = "INSERT INTO imones.imones (pavadinimas, kodas, pvm_kodas, adresas, telefonas, el_pastas, veikla, vadovas)
+            VALUES (:pavadinimas, :kodas, :pvmkodas, :adresas, :tel, :elpastas, :veikla, :vadovas)";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindParam(':pavadinimas', $this->pavadinimas, PDO::PARAM_STR);
+            $stmt->bindParam(':kodas', $this->kodas, PDO::PARAM_STR);
+            $stmt->bindParam(':pvmkodas', $this->pvmkodas, PDO::PARAM_STR);
+            $stmt->bindParam(':adresas', $this->adresas, PDO::PARAM_STR);
+            $stmt->bindParam(':tel', $this->tel, PDO::PARAM_STR);
+            $stmt->bindParam(':elpastas', $this->elpastas, PDO::PARAM_STR);
+            $stmt->bindParam(':veikla', $this->veikla, PDO::PARAM_STR);
+            $stmt->bindParam(':vadovas', $this->vadovas, PDO::PARAM_STR);
+            $stmt->execute();
         } catch(PDOException $e) {
             echo $e->getMessage();
         }

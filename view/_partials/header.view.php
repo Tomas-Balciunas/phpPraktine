@@ -11,6 +11,9 @@
         <div class="col-md-1">
             <h5><a href="/atsiskaitymas/page">Visos Įmonės</a></h5>
         </div>
+        <div class="col-md-1">
+            <h5><a href="/atsiskaitymas/control">Control</a></h5>
+        </div>
     </div>
 </div>
 </header>
