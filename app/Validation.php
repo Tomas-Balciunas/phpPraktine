@@ -5,6 +5,7 @@ namespace PraktineApp;
 class Validation {
 
     private static $errors = [];
+    private static $error = [];
 
     public static function validation($data) {
         self::valPavadinimas($data['pavadinimas']);
@@ -16,6 +17,22 @@ class Validation {
         self::valVeikla($data['veikla']);
         self::valVadovas($data['vadovas']);
         return self::$errors;
+    }
+
+    public static function validation2($data2) {
+        self::valDelkodas($data2['delkodas']);
+        return self::$error;
+    }
+
+    private static function valDelkodas($title2) {
+        $valid = preg_match('/^[0-9]{7,9}$/', $title2);
+        if (empty($title2)) {
+            Validation::$error['1'] = 'Įveskite kodą pašalinimui';
+        } else if (!$valid) {
+            Validation::$error['1'] = 'Įmonės Kodas negali būti ilgesnis kaip 9 ir trumpesnis kaip 7 skaičiai';
+        } else {
+            Validation::$error['1'] = '';
+        }
     }
 
     private static function valPavadinimas($title) {

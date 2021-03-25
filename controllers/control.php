@@ -6,13 +6,13 @@ use PraktineApp\Validation;
 
 if(isset($_POST['send'])) {
     $connection = DB::connect();
-    $error = Validation::validation($_POST);
+    $vali = Validation::validation($_POST);
 
-    if (empty(implode("", $error))) {
+    if (empty(implode("", $vali))) {
         $task = new Tasks($connection);
         $task->sukurti($_POST);
     } else {
-        foreach ($error as $err) {
+        foreach ($vali as $err) {
             echo '<p>' . $err . '</p>';
         }
     }
@@ -22,8 +22,17 @@ if(isset($_POST['send'])) {
 
 if(isset($_POST['del'])) {
     $connection = DB::connect();
-    $task2 = new Tasks($connection);
-    $task2->sukurtidel($_POST);
+    $vali2 = Validation::validation2($_POST);
+
+    if (empty(implode("", $vali2))) {
+        $task2 = new Tasks($connection);
+        $task2->sukurtidel($_POST);
+    } else {
+        foreach ($vali2 as $err) {
+            echo '<p>' . $err . '</p>';
+        }
+    }
+    
 }
 
 require "view/pages/control.view.php";
