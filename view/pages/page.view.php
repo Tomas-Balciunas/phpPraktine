@@ -11,6 +11,7 @@
     <table>
         <tr>
             <th>Įmonės pavadinimas</th>
+            <th>Kodas</th>
             <th>Adresas</th>
             <th>El.paštas</th>
         </tr>
@@ -18,6 +19,7 @@
         
         <tr>
             <td><a href="/atsiskaitymas/info/<?= $task['id'] ?>"><?= $task['pavadinimas']; ?></a></td>
+            <td><?= $task['kodas']; ?></td>
             <td><?= $task['adresas']; ?></td>
             <td><?= $task['el_pastas']; ?></td>
         </tr>

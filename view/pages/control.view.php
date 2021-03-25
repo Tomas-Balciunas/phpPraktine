@@ -38,6 +38,19 @@
         </div>
         </form>
     </div>
+
+    <h2 class="text-center title">Šalinti įmonę</h2>
+        <form method="post">
+        <div class="row d-flex justify-content-center mt-1 mb-1">
+            <input type="text" name="delkodas" id="delkodas" placeholder="Iveskite įmonės kodą"/>
+        </div>
+        <div class="row d-flex justify-content-center mb-5">
+            <input type="submit" id="del" name="del" value="Šalinti" />
+        </div>
+        </form>
+    <div class="container-fluid">
+
+    </div>
     </section>
     </body>
 </html>

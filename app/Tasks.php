@@ -12,6 +12,7 @@ class Tasks {
     private $elpastas;
     private $veikla;
     private $vadovas;
+    private $delkodas;
 
     public function __construct($pdo) {
         $this->pdo = $pdo;
@@ -102,4 +103,23 @@ class Tasks {
             echo $e->getMessage();
         }
     }
+
+    public function sukurtidel($task2) {
+        $this->delkodas = $task2['delkodas'];
+        $this->salinti();
+    }
+
+    public function salinti() {
+
+        try {
+        $query = "DELETE FROM imones.imones WHERE kodas = :delkodas";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindParam(':delkodas', $this->delkodas, PDO::PARAM_STR);
+        $stmt->execute();
+    } catch(PDOException $e) {
+        echo $e->getMessage();
+        }
+    }
+
+    
 }
