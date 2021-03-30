@@ -9,22 +9,24 @@ html, body {
     background-image: url(bg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    overflow-x: hidden;
 }
 
-#search {
+input {
     padding: 0.3em;
     width: 20em;
     border-radius: 0.5em;
-    border: 1px solid rgb(94, 94, 94);
+    border: 2px solid rgb(94, 94, 94);
     text-align: center;
     outline: none;
 }
 
-#submit {
+#submit, #del, #send, #login, #register {
     padding: 0.4em;
-    background-color: rgb(243, 233, 174, 0);
-    border: 2px solid rgb(94, 94, 94);
+    background-color: rgb(255, 121, 121);
+    border: none;
     border-radius: 0.5em;
+    outline: none;
 }
 
 .title {
@@ -32,7 +34,7 @@ html, body {
     margin-bottom: 2em;
 }
 
-table, th, td {
+th, td {
     border: 1px solid black;
     border-collapse: collapse;
 }

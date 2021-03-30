@@ -13,6 +13,11 @@ class Tasks {
     private $veikla;
     private $vadovas;
     private $delkodas;
+    private $vardas;
+    private $emailas;
+    private $slaptazodis;
+    private $email;
+    private $password;
 
     public function __construct($pdo) {
         $this->pdo = $pdo;
@@ -62,7 +67,6 @@ class Tasks {
     }
 
     public function info($id){
-
         try {
         $statement = $this->pdo->prepare("SELECT * FROM imones.imones WHERE `id` = :id");
         $statement->bindValue(":id", $id, PDO::PARAM_INT);
@@ -121,5 +125,66 @@ class Tasks {
         }
     }
 
-    
+    public function register1($task) {
+        $this->vardas = $task['vardas'];
+        $this->emailas = $task['emailas'];
+        $this->slaptazodis = password_hash($task['slaptazodis'], PASSWORD_DEFAULT);
+        $this->register2();
+    }
+
+    public function register2() {
+        try {
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM imones.users WHERE email = :email");
+            $stmt->bindParam(':email', $this->emailas, PDO::PARAM_STR);
+            $stmt->execute();
+            if ($stmt->fetchColumn()) {
+                echo "<div style='position:absolute; bottom:5em; left:50%;'><div style='position:relative; left:-50%; color:red'>Email is already in use!</div></div>";
+            } else {
+                $query2 = "INSERT INTO imones.users (username, email, password)
+                VALUES (:vardas, :emailas, :slaptazodis)";
+                $stmt2 = $this->pdo->prepare($query2);
+                $stmt2->bindParam(':vardas', $this->vardas, PDO::PARAM_STR);
+                $stmt2->bindParam(':emailas', $this->emailas, PDO::PARAM_STR);
+                $stmt2->bindParam(':slaptazodis', $this->slaptazodis, PDO::PARAM_STR);
+                $stmt2->execute();
+            }
+                
+        } catch(PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function prelogin($task) {
+        $this->email = $task['email'];
+        $this->password = $task['password'];
+        $this->login();
+    }
+
+    public function login() {
+        try {
+            $userId = $this->pdo->prepare("SELECT username FROM imones.users WHERE `email` = :email");
+            $userId->bindParam(":email", $this->email, PDO::PARAM_STR);
+            $userId->execute();
+            $result1 = $userId->fetch(PDO::FETCH_ASSOC);
+
+            $userEmail = $this->pdo->prepare("SELECT email FROM imones.users WHERE `email` = :email");
+            $userEmail->bindParam(":email", $this->email, PDO::PARAM_STR);
+            $userEmail->execute();
+            $result2 = $userEmail->fetch(PDO::FETCH_ASSOC);
+
+            $userPass = $this->pdo->prepare("SELECT password FROM imones.users WHERE `email` = :email");
+            $userPass->bindParam(":email", $this->email, PDO::PARAM_STR);
+            $userPass->execute();
+            $result3 = $userPass->fetch(PDO::FETCH_ASSOC);
+
+            if (password_verify(htmlspecialchars($_POST['password']), $result3['password']) && $_POST['email'] == $result2['email']) {
+                $_SESSION['user_id'] = $result1;
+            } else {
+                echo "Prisijungumas nepavyko";
+            }
+
+        } catch(PDOException $e) {
+            echo $e->getMessage();
+        }
+    } 
 }

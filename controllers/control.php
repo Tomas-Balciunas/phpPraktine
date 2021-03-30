@@ -1,5 +1,7 @@
-<?php
-
+<?php session_start();
+if ($_SESSION['user_id'] == "") {
+    header("Location:/atsiskaitymas/");
+}
 use PraktineApp\DB;
 use PraktineApp\Tasks;
 use PraktineApp\Validation;

@@ -7,7 +7,7 @@
     
     <h2 class="text-center title">Kurti įmonę</h2>
 
-    <div class="container-fluid">
+    <div class="container-fluid forms">
         <form method="post">
         <div class="row d-flex justify-content-center mt-5 mb-1">
             <input type="text" name="pavadinimas" id="pavadinimas" placeholder="Iveskite įmonės pavadinimą"/>
