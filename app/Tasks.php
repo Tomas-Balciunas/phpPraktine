@@ -138,7 +138,7 @@ class Tasks {
             $stmt->bindParam(':email', $this->emailas, PDO::PARAM_STR);
             $stmt->execute();
             if ($stmt->fetchColumn()) {
-                echo "<div style='position:absolute; bottom:5em; left:50%;'><div style='position:relative; left:-50%; color:red'>Email is already in use!</div></div>";
+                echo "<div style='position:absolute; bottom:5em; left:50%;'><div style='position:relative; left:-50%; color:red'>Toks el. paštas jau egzistuoja!</div></div>";
             } else {
                 $query2 = "INSERT INTO imones.users (username, email, password)
                 VALUES (:vardas, :emailas, :slaptazodis)";
@@ -177,11 +177,15 @@ class Tasks {
             $userPass->execute();
             $result3 = $userPass->fetch(PDO::FETCH_ASSOC);
 
-            if (password_verify(htmlspecialchars($_POST['password']), $result3['password']) && $_POST['email'] == $result2['email']) {
+            if (empty($result2['email'])) {
+                echo "<div style='position:absolute; bottom:5em; left:50%;'><div style='position:relative; left:-50%; color:red'>Tokio el. pašto nėra sistemoje</div></div>";
+            }
+            else if (password_verify(htmlspecialchars($_POST['password']), $result3['password']) && $_POST['email'] == $result2['email']) {
                 $_SESSION['user_id'] = $result1;
             } else {
-                echo "Prisijungumas nepavyko";
+                echo "<div style='position:absolute; bottom:5em; left:50%;'><div style='position:relative; left:-50%; color:red'>Neteisingi prisijungimo duomenys!</div></div>";
             }
+            
 
         } catch(PDOException $e) {
             echo $e->getMessage();

@@ -6,6 +6,7 @@ class Validation {
 
     private static $errors = [];
     private static $error = [];
+    private static $reg = [];
 
     public static function validation($data) {
         self::valPavadinimas($data['pavadinimas']);
@@ -84,7 +85,7 @@ class Validation {
         if (empty($title)) {
             Validation::$errors['5'] = 'Įveskite tel. numerį';
         } else if (!$valid) {
-            Validation::$errors['5'] = 'Telefono laukelyje naudokite tik skaičius bei ženklus +()';
+            Validation::$errors['5'] = 'Telefono laukelyje naudokite tik skaičius bei ženklus + ( )';
         } else {
             Validation::$errors['5'] = '';
         }
@@ -119,6 +120,39 @@ class Validation {
             Validation::$errors['8'] = 'Vardo laukelyje naudokite tik raides';
         } else {
             Validation::$errors['8'] = '';
+        }
+    }
+
+    public static function reg($data3) {
+        self::regname($data3['vardas']);
+        self::regemail($data3['emailas']);
+        self::regpass($data3['slaptazodis']);
+        return self::$reg;
+    }
+
+    private static function regname($vardas) {
+        $valid = preg_match('/^[a-zA-Z0-9-_]{3,20}$/', $vardas);
+        if (!$valid) {
+            Validation::$reg['1'] = 'Vardas turi buti nuo 3 iki 20 simbolių, naudokite tik raides, skaičius, simbolius - ir _';
+        } else {
+            Validation::$reg['1'] = '';
+        }
+    }
+
+    private static function regemail($emailas) {
+        if (!filter_var($emailas, FILTER_VALIDATE_EMAIL)) {
+            Validation::$reg['2'] = 'Neteisingas el. paštas';
+        } else {
+            Validation::$reg['2'] = '';
+        }
+    }
+
+    private static function regpass($slaptazodis) {
+        $valid = preg_match('/^(.{6,20})$/', $slaptazodis);
+        if (!$valid) {
+            Validation::$reg['2'] = 'Slaptažodis turi būti nuo 6 iki 20 simbolių';
+        } else {
+            Validation::$reg['2'] = '';
         }
     }
 }

@@ -14,10 +14,10 @@
         <div class="container-fluid log">
             <form method="post">
             <div class="row d-flex justify-content-center mt-5 mb-2">
-                <input type="text" name="email" id="email" placeholder="Iveskite el. paštą"/>
+                <input type="text" name="email" id="email" placeholder="Iveskite el. paštą" required/>
             </div>
             <div class="row d-flex justify-content-center mb-4">
-                <input type="password" name="password" id="password" placeholder="Iveskite slptažodį"/>
+                <input type="password" name="password" id="password" placeholder="Iveskite slptažodį" required/>
             </div>
             <div class="row d-flex justify-content-center mb-5">
                 <input type="submit" id="login" name="login" value="Prisijungti" />
@@ -30,13 +30,13 @@
         <div class="container-fluid reg">
             <form method="post">
             <div class="row d-flex justify-content-center mt-5 mb-2">
-                <input type="text" name="vardas" id="vardas" placeholder="Iveskite vardą"/>
+                <input type="text" name="vardas" id="vardas" placeholder="Iveskite vardą" required/>
             </div>
             <div class="row d-flex justify-content-center mb-2">
-                <input type="text" name="emailas" id="emailas" placeholder="Iveskite el. paštą"/>
+                <input type="text" name="emailas" id="emailas" placeholder="Iveskite el. paštą" required/>
             </div>
             <div class="row d-flex justify-content-center mb-4">
-                <input type="password" name="slaptazodis" id="slaptazodis" placeholder="Iveskite slaptažodį"/>
+                <input type="password" name="slaptazodis" id="slaptazodis" placeholder="Iveskite slaptažodį" required/>
             </div>
             <div class="row d-flex justify-content-center">
                 <input type="submit" id="register" name="register" value="Registruotis" />
@@ -46,5 +46,6 @@
         
     <?php endif; ?>
     </section>
+    <script src="view\script\script.js"></script>
     </body>
 </html>

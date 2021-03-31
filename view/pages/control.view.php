@@ -10,28 +10,28 @@
     <div class="container-fluid forms">
         <form method="post">
         <div class="row d-flex justify-content-center mt-5 mb-1">
-            <input type="text" name="pavadinimas" id="pavadinimas" placeholder="Iveskite įmonės pavadinimą"/>
+            <input type="text" name="pavadinimas" id="pavadinimas" placeholder="Iveskite įmonės pavadinimą" required/>
         </div>
         <div class="row d-flex justify-content-center mt-1 mb-1">
-            <input type="text" name="kodas" id="kodas" placeholder="Iveskite įmonės kodą"/>
+            <input type="text" name="kodas" id="kodas" placeholder="Iveskite įmonės kodą" required/>
         </div>
         <div class="row d-flex justify-content-center mt-1 mb-1">
-            <input type="text" name="pvmkodas" id="pvmkodas" placeholder="Iveskite įmonės PVM kodą"/>
+            <input type="text" name="pvmkodas" id="pvmkodas" placeholder="Iveskite įmonės PVM kodą" required/>
         </div>
         <div class="row d-flex justify-content-center mt-1 mb-1">
-            <input type="text" name="adresas" id="adresas" placeholder="Iveskite įmonės adresą"/>
+            <input type="text" name="adresas" id="adresas" placeholder="Iveskite įmonės adresą" required/>
         </div>
         <div class="row d-flex justify-content-center mt-1 mb-1">
-            <input type="text" name="tel" id="tel" placeholder="Iveskite įmonės telefoną"/>
+            <input type="text" name="tel" id="tel" placeholder="Iveskite įmonės telefoną" required/>
         </div>
         <div class="row d-flex justify-content-center mt-1 mb-1">
-            <input type="text" name="elpastas" id="elpastas" placeholder="Iveskite įmonės el. paštą"/>
+            <input type="text" name="elpastas" id="elpastas" placeholder="Iveskite įmonės el. paštą" required/>
         </div>
         <div class="row d-flex justify-content-center mt-1 mb-1">
-            <input type="text" name="veikla" id="veikla" placeholder="Iveskite įmonės veiklą"/>
+            <input type="text" name="veikla" id="veikla" placeholder="Iveskite įmonės veiklą" required/>
         </div>
         <div class="row d-flex justify-content-center mt-1 mb-1">
-            <input type="text" name="vadovas" id="vadovas" placeholder="Iveskite įmonės vadovo vardą ir pavardę"/>
+            <input type="text" name="vadovas" id="vadovas" placeholder="Iveskite įmonės vadovo vardą ir pavardę" required/>
         </div>
         <div class="row d-flex justify-content-center mb-5">
             <input type="submit" id="send" name="send" value="Pridėti" />
@@ -42,7 +42,7 @@
     <h2 class="text-center title">Šalinti įmonę</h2>
         <form method="post">
         <div class="row d-flex justify-content-center mt-1 mb-1">
-            <input type="text" name="delkodas" id="delkodas" placeholder="Iveskite įmonės kodą"/>
+            <input type="text" name="delkodas" id="delkodas" placeholder="Iveskite įmonės kodą" required/>
         </div>
         <div class="row d-flex justify-content-center mb-5">
             <input type="submit" id="del" name="del" value="Šalinti" />
@@ -52,5 +52,6 @@
 
     </div>
     </section>
+    <script src="view\script\script.js"></script>
     </body>
 </html>
